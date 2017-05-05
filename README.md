@@ -1,2 +1,2 @@
 # scratch
-Area for experimetns
+Area for experiments
