@@ -53,7 +53,7 @@ def find_faces_and_display(image_file, interactive=True):
         plt.ion()
     else:
         plt.ioff()
-    fig = plt.figure("Face finding demo")
+    plt.figure("Face finding demo")
     plt.subplot(1, 2, 1)
     plt.imshow(img[:,:,::-1])
     plt.title('Image')
