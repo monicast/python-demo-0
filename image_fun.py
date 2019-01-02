@@ -15,6 +15,11 @@ Demos
   - interactive and non-interactive mod
 - basic module structure
   - calling from __main__
+
+Suggested next steps
+- update add_rois_to_image to return a modified image, not modify the image passed
+to it
+- check that the ROIs actually fit into the image size
 """
 
 import numpy as np
@@ -22,16 +27,27 @@ import cv2
 from matplotlib import pyplot as plt
 
 def find_faces(img):
+    """
+    Uses opencv to find faces in the image
+    """
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
     face_rois = face_cascade.detectMultiScale(img_gray, 1.3, 3)
     return face_rois
 
-def add_rois_to_image(image, rois):
+def add_rois_to_image(image, rois, color = (255, 0, 0)):
+    """
+    Adds rectangles to image corresponding the to the numpy arrays x,y,width,height arrays.
+    Note that this is altering the numpy image passed into it
+    """
     for (roi_x, roi_y, roi_w, roi_h) in rois:
-        cv2.rectangle(image, (roi_x, roi_y), (roi_x+roi_w, roi_y+roi_h), (255, 0, 0), 2)
+        cv2.rectangle(image, (roi_x, roi_y), (roi_x+roi_w, roi_y+roi_h), color, 2)
 
 def find_faces_and_display(image_file, interactive=True):
+    """
+    Loads image file. Finds faces. Displays figure with two subplots. The left subplot is simply
+    the image itself. The right image shows the image with ROIs indicating where faces were detected
+    """
     img = cv2.imread(image_file, cv2.IMREAD_COLOR)
     if interactive:
         plt.ion()
