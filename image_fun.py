@@ -22,7 +22,6 @@ to it
 - check that the ROIs actually fit into the image size
 """
 
-import numpy as np
 import cv2
 from matplotlib import pyplot as plt
 
