@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python
 """
 A not completely contrived demo.
 Demos
